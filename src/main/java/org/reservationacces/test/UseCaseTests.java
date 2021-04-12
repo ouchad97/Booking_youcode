@@ -1,37 +1,19 @@
 package org.reservationacces.test;
 
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate5.HibernateTemplate;
-import org.reservationacces.dao.UtilisateurDao;
-import org.reservationacces.model.Utilisateur; 
+import java.sql.SQLException;
 
-public class UseCaseTests {
+import org.junit.Test; 
+import org.reservationacces.model.Utilisateur;
+import org.reservationacces.service.UtilisateurServiceImpl; 
 
-	@Autowired
-	private HibernateTemplate hibernateTemplate;
-
-	/*
-	 * @Test public void test() { fail("Not yet implemented"); }
-	 */
-
-	public HibernateTemplate getHibernateTemplate() {
-		return hibernateTemplate;
-	}
-
-	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-		this.hibernateTemplate = hibernateTemplate;
-	}
-
-	@SuppressWarnings("null")
+ 
+public class UtilisateurTest {
+  
 	@Test
-	public void testAddUtilisateur() throws Exception {
-		
-//		Utilisateur user=new Utilisateur("test", "test", 33, "test", "test");
-//		UtilisateurDao AjouterUser = null  ;
-//		AjouterUser.createUtilisateur(user);
-//
-//		
+	public void testAddUtilisateur() throws Exception, ClassNotFoundException, SQLException {
+		UtilisateurServiceImpl userService = new UtilisateurServiceImpl();
+		Utilisateur user = new Utilisateur("testNom", "testPrenom", 633,"testEmail", "testMdps", "testRole", false);
+		userService.save(user);
+		System.out.print(user.toString());
 	}
-
 }
