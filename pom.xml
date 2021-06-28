@@ -149,6 +149,30 @@
 					<artifactId>maven-deploy-plugin</artifactId>
 					<version>2.8.2</version>
 				</plugin>
+				
+				<plugin>
+   <groupId>com.spotify</groupId>
+   <artifactId>docker-maven-plugin</artifactId>
+   <executions>
+      <execution>
+         <phase>install</phase>
+         <goals>
+            <goal>build</goal>
+         </goals>
+      </execution>
+   </executions>
+   <configuration>
+      <imageName>ycreservation:tag</imageName>
+      <baseImage>tomcat:8.0.20-jre8</baseImage>
+      <resources>
+         <resource>
+            <targetPath>/usr/local/tomcat/webapps/</targetPath>
+            <directory>target/</directory>
+            <include>YCSReservation.war</include>
+         </resource>
+      </resources>
+   </configuration>
+</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
